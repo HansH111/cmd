@@ -55,6 +55,7 @@ void Tgetmodinfo(char *basename, int maxlen)
 	DWORD dwSize = GetModuleFileName(NULL,pModulefn,300);
 	pModulefn[dwSize]=0;
 	MODFILENAME=(char *)malloc(strlen(pModulefn)+1);
+	if (MODFILENAME==NULL) exit(1);
 	strcpy(MODFILENAME,pModulefn);
 	if (basename) {
   	   ptr=strrchr(MODFILENAME,'\\');
@@ -82,5 +83,7 @@ int main (int argc, char *argv[])
   retstat=cmd_runmain(MODFILENAME,argc,argv);
   fprintf(stdout,"\r\n");
   fflush(stdout);
+  // cleanup
+  if (MODFILENAME) free(MODFILENAME);
   return retstat;	
 }
