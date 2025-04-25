@@ -59,7 +59,7 @@ void Tgetmodinfo(char *basename, int maxlen)
 	strcpy(MODFILENAME,pModulefn);
 	if (basename) {
   	   ptr=strrchr(MODFILENAME,'\\');
-	   if (ptr==NULL) strrchr(MODFILENAME,'/');
+	   if (ptr==NULL) ptr=strrchr(MODFILENAME,'/');
 	   if (ptr) {
           strncpy(basename,&ptr[1],maxlen);
  		  basename[maxlen]=0;
